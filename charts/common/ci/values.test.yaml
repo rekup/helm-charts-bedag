@@ -175,6 +175,7 @@ components:
     services:
       service-2:
         deploy: true
+        clusterIP: "None"
     # end common.service
     # start common.networkpolicy
     networkpolicies:
@@ -188,6 +189,9 @@ components:
     controller:
       deploy: true
       type: "StatefulSet"
+      # serviceName has to reference an actual "services" entry (see above) so that
+      # spec.serviceName matches the governing Service's metadata.name.
+      serviceName: service-2
 
       extraVolumeClaimTemplates:
         - metadata:
