@@ -16,7 +16,11 @@ metadata:
 spec:
   replicas: {{ $statefulset.replicas | default 1 }}
   revisionHistoryLimit: {{ $statefulset.revisionHistoryLimit | default 3 }}
+  {{- if $statefulset.serviceName }}
+  serviceName: {{ template "library.name" $root }}-{{ $name }}-{{ $statefulset.serviceName }}
+  {{- else }}
   serviceName: {{ template "library.name" $root }}-{{ $name }}
+  {{- end }}
   updateStrategy:
     type: {{ $statefulset.updateStrategy | default "RollingUpdate" }}
   selector:

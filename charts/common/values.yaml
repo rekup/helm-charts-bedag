@@ -311,6 +311,13 @@ components:
       # type has to be "Deployment", "StatefulSet", "Job" or "CronJob"
       type: "Deployment"
 
+      # serviceName is only used when type is "StatefulSet". It sets the governing Service
+      # (spec.serviceName) used for the StatefulSet's stable network identity. It has to be
+      # the key of a service defined under this component's "services" (see start common.service),
+      # so that the resulting Service name matches. Comment out to fall back to the component
+      # name, which only matches an actual Service if no "services" suffix is used.
+      # serviceName: service-1
+
       # Extra annotations on all Pods
       # We use this for example to set the prometheus annotations.
       extraAnnotations: {}

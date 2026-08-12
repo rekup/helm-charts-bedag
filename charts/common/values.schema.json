@@ -864,6 +864,9 @@
                   "type": "boolean",
                   "default": false
                 },
+                "serviceName": {
+                  "type": "string"
+                },
                 "type": {
                   "type": "string",
                   "enum": [
