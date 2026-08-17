@@ -241,12 +241,30 @@ components:
         # protocol:
         #  clusterIP is optional with an empty default
         # clusterIP: "None"
+        #  publishNotReadyAddresses is optional and unset by default. Useful for StatefulSet
+        #  governing/headless services so pods are addressable via DNS before they're ready.
+        # publishNotReadyAddresses: true
         #  overrideSelectors is optional for overridding the default labels: 'app.kubernetes.io/name' & 'app.kubernetes.io/component'
         # overrideSelectors:
         #   label2.1: "label2"
         #   label2.2: "label2"
         #  sessionAffinity supports "ClientIP" and "None". Used to maintain session affinity. Default value is "None".
         # sessionAffinity: "ClientIP"
+        #  ports is optional and allows defining multiple ports on a single Service (e.g. for a
+        #  StatefulSet's governing service). If set, it takes precedence over the singular
+        #  name/port/targetPort/protocol fields above. Each entry supports:
+        #    name        - required, port name
+        #    port        - required, service port
+        #    targetPort  - required, target port on the pod
+        #    protocol    - optional, default "TCP"
+        # ports:
+        #   - name: data
+        #     port: 9200
+        #     targetPort: 9200
+        #   - name: config
+        #     port: 9300
+        #     targetPort: 9300
+        #     protocol: TCP
     # end common.service
     # start common.networkpolicy
     # networkpolicy allows access from outside of the namespace or from other pods
