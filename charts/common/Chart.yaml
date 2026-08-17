@@ -1,7 +1,7 @@
 apiVersion: v2
 name: common
 description: "Bedag's common Helm chart to use for creating other Helm charts"
-version: 12.9.0
+version: 12.10.0
 # A chart can be either an 'application' or a 'library' chart.
 #
 # Application charts are a collection of templates that can be packaged into versioned archives
@@ -28,7 +28,12 @@ annotations:
   artifacthub.io/license: Apache-2.0
   artifacthub.io/changes: |
     - kind: added
-      description: StatefulSet serviceName now matches the governing Service name via optional controller.serviceName
+      description: Added components.<name>.services.<name>.ports list to allow defining multiple ports on a single Service (e.g. for a StatefulSet's governing/headless service)
       links:
         - name: GitHub Issue
-          url: https://github.com/bedag/helm-charts/issues/185
+          url: https://github.com/bedag/helm-charts/issues/187
+    - kind: added
+      description: Added components.<name>.services.<name>.publishNotReadyAddresses to support StatefulSet governing services addressable before pods are ready
+      links:
+        - name: GitHub Issue
+          url: https://github.com/bedag/helm-charts/issues/187
